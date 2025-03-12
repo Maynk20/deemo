@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMPJ Hospital - Emergency Care & Medical Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #c70039;
+            --dark-bg: #0a0a0a;
+            --accent-black: #1a1a1a;
+        }
+
+        * {
+            /* text-align: center; */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            background: var(--accent-black);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(199, 0, 57, 0.3);
+            animation: slideDown 1s ease;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 5rem;
+            color: var(--primary-red);
+            text-decoration: none;
+            animation: glow 2s infinite alternate; 
+        }
+
+        .downcase{
+            font-size:x-large;
+            color: var(--primary-red);
+             text-decoration: none;
+        }
+
+        /* Navigation Styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-links1 {
+    text-align: right;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-red);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 15px var(--primary-red);
+}
+
+.donation {
+    background: var(--primary-red);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    animation: pulse 2s infinite;
+}
+
+.donation:hover {
+    background: #a3002d;
+    text-shadow: none !important;
+}
+
+.donation::after {
+    display: none;
+}
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://www.sklpsbhuj.com/assets/image/activity/hospital.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            transform: translateY(50px);
+            animation: floatUp 1.5s forwards;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--primary-red);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--accent-black);
+        }
+
+        .service-card {
+            background: var(--dark-bg);
+            padding: 2rem;
+            margin: 1rem;
+            border: 2px solid var(--primary-red);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .service-card:nth-child(even) {
+            transform: translateX(100px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--primary-red);
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: var(--primary-red);
+            padding: 2rem;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px var(--primary-red); }
+            100% { text-shadow: 0 0 20px var(--primary-red), 0 0 30px var(--primary-red); }
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Department Grid */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem;
+        }
+
+        .department-card {
+            background: var(--accent-black);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .department-card::before {
+            content: '';
+            position: absolute;
+            /* top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary-red), transparent);
+            animation: borderFlow 4s linear infinite; */
+        }
+
+        @keyframes borderFlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--accent-black);
+            border-radius: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--dark-bg);
+            border: 1px solid var(--primary-red);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px var(--primary-red);
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav>
+           <h1> <a href="#" class="logo">MMPJ HOSPITAL</a></h1>
+           <small class="downcase"> Shree Kutchi <b>Leva Patel</b> Samaj</small>
+        </div>
+        <div class="nav-links1">
+            <a href="#book" class="nav-link donation">Book Appointment</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#vision" class="nav-link">Our Vision</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#donate" class="nav-link">Donation</a>
+        </div>
+    
+   
+            
+            <!-- Add navigation links here -->
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Quality Healthcare Redefined</h1>
+            <p>24/7 Emergency Services | Advanced Medical Technology | Expert Care Team</p>
+        </div>
+    </section>
+
+    <section class="emergency-banner">
+        <h2>EMERGENCY? CALL - 02832 2832</h2>
+    </section>
+
+    <section class="services">
+        <div class="service-card">
+            <h3><i class="fas fa-heartbeat"></i> Cardiology</h3>
+            <p>Advanced cardiac care with state-of-the-art facilities</p>
+        </div>
+        <div class="service-card">
+            <h3><i class="fas fa-bone"></i> Orthopedics</h3>
+            <p>Complete musculoskeletal care and rehabilitation</p>
+        </div>
+        <!-- <section class="services"> -->
+            <div class="service-card">
+                <h3><i class="fas fa-heartbeat"></i> Cardiology</h3>
+                <p>Advanced cardiac care with state-of-the-art facilities</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-bone"></i> Orthopedics</h3>
+                <p>Complete musculoskeletal care and rehabilitation</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-stomach"></i> Gastroenterology</h3>
+                <p>Comprehensive digestive system diagnosis and treatment</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-brain"></i> Neurosurgery</h3>
+                <p>Advanced surgical treatments for neurological disorders</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-wheelchair"></i> Rehabilitation</h3>
+                <p>Physical therapy and recovery programs</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-microscope"></i> Endoscopy</h3>
+                <p>Minimally invasive diagnostic procedures</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-ambulance"></i> Critical Care</h3>
+                <p>24/7 intensive care unit with advanced life support</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-head-side-virus"></i> Neurology</h3>
+                <p>Treatment for nervous system disorders</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-dna"></i> Oncology</h3>
+                <p>Cancer diagnosis and comprehensive treatment plans</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-syringe"></i> Plastic Surgery</h3>
+                <p>Reconstructive and cosmetic surgical procedures</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-spine"></i> Spine Surgery</h3>
+                <p>Advanced treatments for spinal disorders</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-baby"></i> Child Neurology</h3>
+                <p>Specialized care for pediatric neurological conditions</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-tint"></i> Hematology</h3>
+                <p>Blood disorder diagnosis and treatment</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-kidneys"></i> Urology</h3>
+                <p>Urinary tract and male reproductive health care</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-eye"></i> Retinal Care</h3>
+                <p>Specialized treatments for retinal disorders</p>
+            </div>
+            <div class="service-card">
+                <h3><i class="fas fa-bone"></i> Joint Replacement</h3>
+                <p>Advanced orthopedic joint replacement surgeries</p>
+            </div>
+        </section>
+        <!-- Add more service cards -->
+    </section>
+
+    <section class="department-grid">
+        <div class="department-card">
+            <h3>Emergency Care</h3>
+            <p>24/7 emergency services with rapid response teams</p>
+        </div>
+        <div class="department-card">
+            <h3>Maternity Ward</h3>
+            <p>Modern facilities for mother and child care</p>
+        </div>
+        <!-- Add more department cards -->
+    </section>
+
+    <section class="contact-form">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.service-card').forEach((card) => {
+            observer.observe(card);
+        });
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                const target = document.querySelector(e.target.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - document.querySelector('.header').offsetHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
